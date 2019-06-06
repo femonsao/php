@@ -3,6 +3,27 @@
 require_once("vendor/autoload.php");
 
 
+// namespace
+use Rain\Tpl;
+// config
+$config = array(
+    "tpl_dir"       => "tpl/",
+    "cache_dir"     => "cache/",
+);
+Tpl::configure( $config );
+
+// create the Tpl object
+$tpl = new Tpl;
+// assign a variable
+$tpl->assign( "name", "Obi Wan Kenoby" );
+$tpl->assign( "version", PHP_VERSION );
+
+// draw the template
+$html = $tpl->draw( "index" , true);
+
+
+
+
 //Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -63,7 +84,7 @@ $mail->Subject = 'Testando a classe PHPMailer com Gmail';
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+$mail->msgHTML($html);
 
 //Replace the plain text body with one created manually
 $mail->AltBody = 'deu erro vlw';
@@ -101,5 +122,6 @@ function save_mail($mail)
 
     return $result;
 }
+
 
 ?>
