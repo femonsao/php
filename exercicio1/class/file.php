@@ -15,6 +15,12 @@ class File{
         $this->file = $file;
     }
 
+    public function Upload($file){
+
+        echo $file;
+
+    }
+
 
 }
 
