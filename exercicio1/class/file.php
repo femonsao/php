@@ -15,9 +15,17 @@ class File{
         $this->file = $file;
     }
 
-    public function Upload($file){
+    public function Upload(){
 
-        echo $file;
+       if(!file_exists($file)){
+
+        echo "Arquivo ja existe" . $file;
+    
+    }
+    else{
+
+        mkdir($file);
+    }
 
     }
 
